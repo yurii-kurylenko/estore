@@ -1,0 +1,4 @@
+- active_nav_item :home
+- @full_header = true
+%p.cat-place Специальные предложения
+= render 'shared/product_list', :products => @products.includes(:default_image)

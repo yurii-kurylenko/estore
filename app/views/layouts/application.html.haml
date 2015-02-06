@@ -1,0 +1,104 @@
+!!!
+%html
+  %head
+    %title #{@page_title} - #{Shoppe.settings.store_name}
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", :rel=>"stylesheet"}
+    = yield :head
+  %body
+    %nav.navbar.navbar-fixed-top{:role => "navigation"}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          =  link_to 'Магазин', root_path, :class =>  'navbar-brand'
+        / Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "#"} About
+            %li
+              %a{:href => "#"} Services
+            %li
+              %a{:href => "#"} Contact
+        / /.navbar-collapse
+      / /.container
+    / Page Content
+    .container
+      = display_flash
+      .row
+        .col-md-3
+          %p.lead Shop Name
+          .list-group
+            %a.list-group-item{:href => "#"} Category 1
+            %a.list-group-item{:href => "#"} Category 2
+            %a.list-group-item{:href => "#"} Category 3
+          %p.basket
+            - if content_for?(:sidebar)
+              = yield :sidebar
+            - else
+              = render 'shared/basket'
+              -#= render 'shared/reasons'
+        .col-md-9
+          - if @full_header
+            .hidden-xs
+              .carousel-holder
+                #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+                  %ol.carousel-indicators
+                    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+                    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+                    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+                  .carousel-inner
+                    .item.active
+                      %img.slide-image{:alt => "", :src => "assets/nissan.jpg"}/
+                    .item
+                      %img.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                    .item
+                      %img.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+                    %span.glyphicon.glyphicon-chevron-left
+                  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+                    %span.glyphicon.glyphicon-chevron-right
+            .row
+              %p.cat-place Categories
+              - for category in Shoppe::ProductCategory.ordered
+                .col-sm-4.col-lg-4.col-md-4
+                  .thumbnail
+                    %img{:style => category.image ? "background-image:url(#{category.image.path})" : 'background-color:#efefef'}
+                    .caption
+                      %h4.pull-right $24.99
+                      %h4
+                        = link_to category.name, products_path(category.permalink)
+                      %p
+                        See more snippets like this online store item at
+                        = succeed "." do
+                          %a{:href => "http://www.bootsnipp.com", :target => "_blank"} Bootsnipp - http://bootsnipp.com
+                    .ratings
+                      %p.pull-right 15 reviews
+                      %p
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+          .row
+            = yield
+    / /.container
+    .container
+      %hr/
+      / Footer
+      %footer
+        .row
+          .col-lg-12
+            %p Copyright © Your Website 2014
+    / /.container
+    / jQuery
+    / Bootstrap Core JavaScript
+    %script{:src=>"//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
