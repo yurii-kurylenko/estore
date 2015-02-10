@@ -55,3 +55,10 @@ footer {
 .cat-place {
     border: 1px solid black;
 }
+
+.thumbnail img {
+    min-height:200px;
+    height:200px;
+    min-width: 250px;
+    width: 250px;
+}

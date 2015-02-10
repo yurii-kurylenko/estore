@@ -66,31 +66,7 @@
                     %span.glyphicon.glyphicon-chevron-left
                   %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
                     %span.glyphicon.glyphicon-chevron-right
-            .row
-              %p.cat-place Categories
-              - for category in Shoppe::ProductCategory.ordered
-                .col-sm-4.col-lg-4.col-md-4
-                  .thumbnail
-                    %img{:style => category.image ? "background-image:url(#{category.image.path})" : 'background-color:#efefef'}
-                    .caption
-                      %h4.pull-right $24.99
-                      %h4
-                        = link_to category.name, products_path(category.permalink)
-                      %p
-                        See more snippets like this online store item at
-                        = succeed "." do
-                          %a{:href => "http://www.bootsnipp.com", :target => "_blank"} Bootsnipp - http://bootsnipp.com
-                    .ratings
-                      %p.pull-right 15 reviews
-                      %p
-                        %span.glyphicon.glyphicon-star
-                        %span.glyphicon.glyphicon-star
-                        %span.glyphicon.glyphicon-star
-                        %span.glyphicon.glyphicon-star
-                        %span.glyphicon.glyphicon-star
-          .row
-            = yield
-    / /.container
+          = yield
     .container
       %hr/
       / Footer

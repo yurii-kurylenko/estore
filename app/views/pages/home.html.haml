@@ -1,4 +1,16 @@
 - active_nav_item :home
 - @full_header = true
-%p.cat-place Специальные предложения
-= render 'shared/product_list', :products => @products.includes(:default_image)
+.row
+  %p.cat-place Categories
+  = render 'shared/categories_list', :categories => @categories
+.row
+  %p.cat-place Специальные предложения
+  .featured-products.col-sm-4
+    - for product in @products[0]
+      = render 'shared/product_list', :product => product
+  .featured-products.col-sm-4
+    - for product in @products[1]
+      = render 'shared/product_list', :product => product
+  .featured-products.col-sm-4
+    - for product in @products[2]
+      = render 'shared/product_list', :product => product

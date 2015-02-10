@@ -1,0 +1,12 @@
+%ul.products
+- for category in categories
+  .col-sm-4.col-lg-4.col-md-4
+    .thumbnail
+      %img{:style => category.image ? "background-image:url(#{category.image.path})" : 'background-color:#efefef'}
+      .caption
+        %h4
+          = link_to category.name, products_path(category.permalink)
+        %p
+          See more snippets like this online store item at
+          = succeed "." do
+            %a{:href => "http://www.bootsnipp.com", :target => "_blank"} Bootsnipp - http://bootsnipp.com
