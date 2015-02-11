@@ -6,4 +6,4 @@
   - if @products.empty?
     %p.noProducts There are no products matching your filter
   - else
-    = render 'shared/product_list', :products => @products
+    = render 'shared/product_list', :products => @products.in_groups(3, false)

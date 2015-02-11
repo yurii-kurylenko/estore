@@ -2,7 +2,7 @@
 - for category in categories
   .col-sm-4.col-lg-4.col-md-4
     .thumbnail
-      %img{:style => category.image ? "background-image:url(#{category.image.path})" : 'background-color:#efefef'}
+      %img{:src => category.image ? "#{category.image.path}" : 'http://placehold.it/250x200"'}
       .caption
         %h4
           = link_to category.name, products_path(category.permalink)
