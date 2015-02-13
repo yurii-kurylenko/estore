@@ -7,5 +7,7 @@
     %button.btn.btn-default
       = link_to "Info", product_path(product.product_category.permalink, product.permalink)
       - if product.orderable?
-        %button.btn.btn-primary.btn-small
-          = link_to "Add", buy_product_path(product.product_category.permalink, product.permalink), :class => 'add', :method => :post, :style => 'color: white;'
+        %button.btn.btn-primary.add
+          Add
+        -# %button.btn.btn-primary
+        -#   = link_to "Add", buy_product_path(product.product_category.permalink, product.permalink), :class => 'add', :method => :post, :style => 'color: white;'

@@ -40,12 +40,14 @@
             %a.list-group-item{:href => "#"} Category 1
             %a.list-group-item{:href => "#"} Category 2
             %a.list-group-item{:href => "#"} Category 3
-          %p.basket
-            - if content_for?(:sidebar)
-              = yield :sidebar
-            - else
-              = render 'shared/basket'
-              -#= render 'shared/reasons'
+          #sticky-anchor
+          .panel.panel-primary#sticky
+            .panel-body.basket
+              - if content_for?(:sidebar)
+                = yield :sidebar
+              - else
+                = render 'shared/basket'
+                -#= render 'shared/reasons'
         .col-md-9
           - if @full_header
             .hidden-xs
