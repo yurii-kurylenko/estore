@@ -23,3 +23,4 @@ config/session_token.yml
 # Ignore assets
 public/assets
 app/backup
+/vendor
