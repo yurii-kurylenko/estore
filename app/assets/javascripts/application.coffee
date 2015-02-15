@@ -70,19 +70,6 @@ $ ->
       dataType: 'json'
       success: updateOrderItemsFromRemote
 
-sticky_relocate = ->
-  window_top = $(window).scrollTop()
-  div_top = $('#sticky-anchor').offset().top
-  if window_top > div_top
-    $('#sticky').addClass 'stick'
-  else
-    $('#sticky').removeClass 'stick'
-  return
-
-$ ->
-  $(window).scroll sticky_relocate
-  sticky_relocate()
-  return
 
 
 

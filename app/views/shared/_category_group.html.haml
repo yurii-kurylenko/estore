@@ -1,0 +1,10 @@
+- for category in category_group
+  .thumbnail
+    %img{:src => category.image ? "#{category.image.path}" : 'http://placehold.it/250x200"'}
+    .caption
+      %h4
+        = link_to category.name, products_path(category.permalink)
+      %p
+        See more snippets like this online store item at
+        = succeed "." do
+          %a{:href => "http://www.bootsnipp.com", :target => "_blank"} Bootsnipp - http://bootsnipp.com

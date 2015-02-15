@@ -18,7 +18,57 @@
   background-color: #fff
  }
 
-#sticky.stick {
-    position: fixed;
-    top: 75px;
+.navbar {
+    background-color: #ededed;
 }
+.icon-bar {
+    background-color: black;
+}
+
+.info {
+  height: 180px;
+  img {
+    margin-left: 5%;
+    min-height:100px;
+    height:180px;
+    min-width: 100px;
+    width: 200px;
+  }
+  .contacts{
+  }
+  .basket {
+  }
+}
+
+
+
+
+
+// .info {
+//   height: 100px;
+//   .row {
+//     #logo {
+//       // display: inline;
+//       float: left;
+//       img {
+//         margin-left: 5%;
+//         min-height:100px;
+//         height:90px;
+//         min-width: 100px;
+//         width: 160px;
+//       }
+//     }
+//     .thumbnail {
+//       height: 100%;
+//       .contacts {
+//         // display: inline;
+//         float: left;
+//       }
+//       .basket {
+//         border-left: 1px solid black;
+//         // display: inline;
+//         float: right;
+//       }
+//     }
+//   }
+// }

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026181716) do
+ActiveRecord::Schema.define(version: 20150206144111) do
+
+  create_table "formfactors", force: true do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -201,6 +208,7 @@ ActiveRecord::Schema.define(version: 20141026181716) do
     t.text     "in_the_box"
     t.boolean  "stock_control",                               default: true
     t.boolean  "default",                                     default: false
+    t.integer  "formfactor_id"
   end
 
   add_index "shoppe_products", ["parent_id"], name: "index_shoppe_products_on_parent_id"

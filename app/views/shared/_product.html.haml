@@ -1,7 +1,6 @@
 .thumbnail
   %img{:src => product.default_image ? "#{product.default_image.path}" : ''}
   %h4= link_to product.name, product_path(product.product_category.permalink, product.permalink)
-  %p.info= truncate product.short_description, :length => 90
   %p.price= number_to_currency product.price
   .btn-group.btn-group
     %button.btn.btn-default
