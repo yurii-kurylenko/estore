@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206144111) do
+ActiveRecord::Schema.define(version: 20150215164205) do
 
   create_table "formfactors", force: true do |t|
     t.string   "name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.string   "role"
     t.string   "file_name"
     t.string   "file_type"
-    t.binary   "data",        limit: 10485760
+    t.binary   "data",        limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.text     "country_ids"
   end
 
-  add_index "shoppe_delivery_service_prices", ["delivery_service_id"], name: "index_shoppe_delivery_service_prices_on_delivery_service_id"
-  add_index "shoppe_delivery_service_prices", ["max_weight"], name: "index_shoppe_delivery_service_prices_on_max_weight"
-  add_index "shoppe_delivery_service_prices", ["min_weight"], name: "index_shoppe_delivery_service_prices_on_min_weight"
-  add_index "shoppe_delivery_service_prices", ["price"], name: "index_shoppe_delivery_service_prices_on_price"
+  add_index "shoppe_delivery_service_prices", ["delivery_service_id"], name: "index_shoppe_delivery_service_prices_on_delivery_service_id", using: :btree
+  add_index "shoppe_delivery_service_prices", ["max_weight"], name: "index_shoppe_delivery_service_prices_on_max_weight", using: :btree
+  add_index "shoppe_delivery_service_prices", ["min_weight"], name: "index_shoppe_delivery_service_prices_on_min_weight", using: :btree
+  add_index "shoppe_delivery_service_prices", ["price"], name: "index_shoppe_delivery_service_prices_on_price", using: :btree
 
   create_table "shoppe_delivery_services", force: true do |t|
     t.string   "name"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.string   "tracking_url"
   end
 
-  add_index "shoppe_delivery_services", ["active"], name: "index_shoppe_delivery_services_on_active"
+  add_index "shoppe_delivery_services", ["active"], name: "index_shoppe_delivery_services_on_active", using: :btree
 
   create_table "shoppe_order_items", force: true do |t|
     t.integer  "order_id"
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.datetime "updated_at"
   end
 
-  add_index "shoppe_order_items", ["order_id"], name: "index_shoppe_order_items_on_order_id"
-  add_index "shoppe_order_items", ["ordered_item_id", "ordered_item_type"], name: "index_shoppe_order_items_ordered_item"
+  add_index "shoppe_order_items", ["order_id"], name: "index_shoppe_order_items_on_order_id", using: :btree
+  add_index "shoppe_order_items", ["ordered_item_id", "ordered_item_type"], name: "index_shoppe_order_items_ordered_item", using: :btree
 
   create_table "shoppe_orders", force: true do |t|
     t.string   "token"
@@ -143,9 +143,9 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.string   "invoice_number"
   end
 
-  add_index "shoppe_orders", ["delivery_service_id"], name: "index_shoppe_orders_on_delivery_service_id"
-  add_index "shoppe_orders", ["received_at"], name: "index_shoppe_orders_on_received_at"
-  add_index "shoppe_orders", ["token"], name: "index_shoppe_orders_on_token"
+  add_index "shoppe_orders", ["delivery_service_id"], name: "index_shoppe_orders_on_delivery_service_id", using: :btree
+  add_index "shoppe_orders", ["received_at"], name: "index_shoppe_orders_on_received_at", using: :btree
+  add_index "shoppe_orders", ["token"], name: "index_shoppe_orders_on_token", using: :btree
 
   create_table "shoppe_payments", force: true do |t|
     t.integer  "order_id"
@@ -161,8 +161,8 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.datetime "updated_at"
   end
 
-  add_index "shoppe_payments", ["order_id"], name: "index_shoppe_payments_on_order_id"
-  add_index "shoppe_payments", ["parent_payment_id"], name: "index_shoppe_payments_on_parent_payment_id"
+  add_index "shoppe_payments", ["order_id"], name: "index_shoppe_payments_on_order_id", using: :btree
+  add_index "shoppe_payments", ["parent_payment_id"], name: "index_shoppe_payments_on_parent_payment_id", using: :btree
 
   create_table "shoppe_product_attributes", force: true do |t|
     t.integer  "product_id"
@@ -175,9 +175,9 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.boolean  "public",     default: true
   end
 
-  add_index "shoppe_product_attributes", ["key"], name: "index_shoppe_product_attributes_on_key"
-  add_index "shoppe_product_attributes", ["position"], name: "index_shoppe_product_attributes_on_position"
-  add_index "shoppe_product_attributes", ["product_id"], name: "index_shoppe_product_attributes_on_product_id"
+  add_index "shoppe_product_attributes", ["key"], name: "index_shoppe_product_attributes_on_key", using: :btree
+  add_index "shoppe_product_attributes", ["position"], name: "index_shoppe_product_attributes_on_position", using: :btree
+  add_index "shoppe_product_attributes", ["product_id"], name: "index_shoppe_product_attributes_on_product_id", using: :btree
 
   create_table "shoppe_product_categories", force: true do |t|
     t.string   "name"
@@ -185,9 +185,10 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
-  add_index "shoppe_product_categories", ["permalink"], name: "index_shoppe_product_categories_on_permalink"
+  add_index "shoppe_product_categories", ["permalink"], name: "index_shoppe_product_categories_on_permalink", using: :btree
 
   create_table "shoppe_products", force: true do |t|
     t.integer  "parent_id"
@@ -211,10 +212,10 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.integer  "formfactor_id"
   end
 
-  add_index "shoppe_products", ["parent_id"], name: "index_shoppe_products_on_parent_id"
-  add_index "shoppe_products", ["permalink"], name: "index_shoppe_products_on_permalink"
-  add_index "shoppe_products", ["product_category_id"], name: "index_shoppe_products_on_product_category_id"
-  add_index "shoppe_products", ["sku"], name: "index_shoppe_products_on_sku"
+  add_index "shoppe_products", ["parent_id"], name: "index_shoppe_products_on_parent_id", using: :btree
+  add_index "shoppe_products", ["permalink"], name: "index_shoppe_products_on_permalink", using: :btree
+  add_index "shoppe_products", ["product_category_id"], name: "index_shoppe_products_on_product_category_id", using: :btree
+  add_index "shoppe_products", ["sku"], name: "index_shoppe_products_on_sku", using: :btree
 
   create_table "shoppe_settings", force: true do |t|
     t.string "key"
@@ -222,7 +223,7 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.string "value_type"
   end
 
-  add_index "shoppe_settings", ["key"], name: "index_shoppe_settings_on_key"
+  add_index "shoppe_settings", ["key"], name: "index_shoppe_settings_on_key", using: :btree
 
   create_table "shoppe_stock_level_adjustments", force: true do |t|
     t.integer  "item_id"
@@ -235,8 +236,8 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.datetime "updated_at"
   end
 
-  add_index "shoppe_stock_level_adjustments", ["item_id", "item_type"], name: "index_shoppe_stock_level_adjustments_items"
-  add_index "shoppe_stock_level_adjustments", ["parent_id", "parent_type"], name: "index_shoppe_stock_level_adjustments_parent"
+  add_index "shoppe_stock_level_adjustments", ["item_id", "item_type"], name: "index_shoppe_stock_level_adjustments_items", using: :btree
+  add_index "shoppe_stock_level_adjustments", ["parent_id", "parent_type"], name: "index_shoppe_stock_level_adjustments_parent", using: :btree
 
   create_table "shoppe_tax_rates", force: true do |t|
     t.string   "name"
@@ -256,6 +257,6 @@ ActiveRecord::Schema.define(version: 20150206144111) do
     t.datetime "updated_at"
   end
 
-  add_index "shoppe_users", ["email_address"], name: "index_shoppe_users_on_email_address"
+  add_index "shoppe_users", ["email_address"], name: "index_shoppe_users_on_email_address", using: :btree
 
 end

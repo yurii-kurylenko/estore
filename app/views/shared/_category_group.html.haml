@@ -3,7 +3,12 @@
     %img{:src => category.image ? "#{category.image.path}" : 'http://placehold.it/250x200"'}
     .caption
       %h4
-        = link_to category.name, products_path(category.permalink)
+        -if category.parent_id
+          = link_to category.name, products_path(category.permalink)
+        -else
+          = link_to category.name, subcategories_path(category.permalink)
+          -# , :permalink => category.permalink
+          -# = link_to(category.name, { controller: "pages", action: "show_subcats", permalink: category.permalink })
       %p
         See more snippets like this online store item at
         = succeed "." do

@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'redcarpet'
 gem 'faker'
-gem 'shoppe', '~> 1.0.2'
+gem 'shoppe', '1.0.4'
 gem 'thin'
 
 group :development do

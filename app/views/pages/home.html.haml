@@ -30,6 +30,10 @@
 %p.cat-place Categories
 .row
   = render 'shared/categories_list', :categories => @categories
+%p.cat-place Subcategories
+.row
+  = render 'shared/categories_list', :categories => @subcategories
 %p.cat-place Специальные предложения
 .row
   = render 'shared/product_list' , :products => @products
+

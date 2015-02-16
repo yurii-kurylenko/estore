@@ -1,12 +1,4 @@
-.featured-products.col-sm-3.col-xs-6
-  - for product in products[0]
-    = render 'shared/product', :product => product
-.featured-products.col-sm-3.col-xs-6
-  - for product in products[1]
-    = render 'shared/product', :product => product
-.featured-products.col-sm-3.col-xs-6
-  - for product in products[2]
-    = render 'shared/product', :product => product
-.featured-products.col-sm-3.col-xs-6
-  - for product in products[3]
-    = render 'shared/product', :product => product
+- for product_groups in products
+  .featured-products.col-sm-3.col-xs-6
+    - for product in product_groups
+      = render 'shared/product', :product => product
