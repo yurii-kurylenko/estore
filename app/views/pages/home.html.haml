@@ -9,31 +9,13 @@
         %li МТС: 050-23-45-643
   .col-sm-2.col-xs-6
     = render 'shared/basket'
-.row
-  .carousel-holder
-    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-      %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-        %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-        %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-      .carousel-inner
-        .item.active
-          %img.slide-image{:alt => "", :src => "assets/nissan.jpg"}/
-        .item
-          %img.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-        .item
-          %img.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-        %span.glyphicon.glyphicon-chevron-left
-      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-        %span.glyphicon.glyphicon-chevron-right
-%p.cat-place Categories
+//%p.cat-place Categories
 .row
   = render 'shared/categories_list', :categories => @categories
-%p.cat-place Subcategories
+//%p.cat-place Subcategories
 .row
   = render 'shared/categories_list', :categories => @subcategories
-%p.cat-place Специальные предложения
+//%p.cat-place Специальные предложения
 .row
   = render 'shared/product_list' , :products => @products
 
